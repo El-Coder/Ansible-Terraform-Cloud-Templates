@@ -33,3 +33,13 @@ Remarks - Ansible
 * Once it's done, encrypt the file with the command *ansible-vault encrypt ansible/playbooks/group_vars/F5_systems/vault*
 * update your ansible roles accordingly
 * You can run *ansible-playbook -i inventory/hosts site.yml --ask-vault-pass*
+
+When running ansible run this command ansible-playbook -i inventory/hosts site.yml --ask-vault-pass --ssh-common-args='-o StrictHostKeyChecking=no' -vvvv
+
+Then ssh -I /.ssh/id_rsa azureuser@{bigip_publicip} then run ansible command again
+
+Edit ssh key path in ssh_keyfile: in /F5_BIG-IP_Standalone_1Nic/ansible/playbooks/roles/f5_onboarding/tasks/main.yml 
+
+Also in /F5_BIG-IP_Standalone_1Nic/ansible/playbooks/group_vars/all if necessary  
+
+Change AllowedIPs in F5_BIG-IP_Standalone_1Nic/terraform/ terraform.tfvars
