@@ -48,13 +48,22 @@ variable "f5_image_name" {}
 variable "f5_product_name" {}
 
 ## Please check and update the latest DO URL from https://github.com/F5Networks/f5-declarative-onboarding/releases
+#https://github.com/nmenant/Public-Cloud-Templates/raw/master/tools/f5-declarative-onboarding-1.4.0-1.noarch.rpm
 variable "DO_URL" {
-  default = "https://github.com/nmenant/Public-Cloud-Templates/raw/master/tools/f5-declarative-onboarding-1.4.0-1.noarch.rpm"
+  default = "https://github.com/F5Networks/f5-declarative-onboarding/releases/download/v1.9.0/f5-declarative-onboarding-1.9.0-1.noarch.rpm"
 }
 
 ## Please check and update the latest AS3 URL from https://github.com/F5Networks/f5-appsvcs-extension/releases/latest 
 variable "AS3_URL" {
   default = "https://github.com/F5Networks/f5-appsvcs-extension/releases/download/v3.12.0/f5-appsvcs-3.12.0-5.noarch.rpm"
+}
+
+variable "TS_URL" {
+  default = "https://github.com/F5Networks/f5-telemetry-streaming/releases/download/v1.8.0/f5-telemetry-1.8.0-1.noarch.rpm"
+}
+
+variable "CloudFailover_URL" {
+  default = "https://github.com/f5devcentral/f5-cloud-failover-extension/releases/download/v1.0.0/f5-cloud-failover-1.0.0-0.noarch.rpm"
 }
 
 

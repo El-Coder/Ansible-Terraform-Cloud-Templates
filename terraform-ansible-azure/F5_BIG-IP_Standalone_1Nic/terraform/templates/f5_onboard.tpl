@@ -40,15 +40,44 @@ DO_URL='${DO_URL}'
 DO_FN=$(basename "$DO_URL")
 AS3_URL='${AS3_URL}'
 AS3_FN=$(basename "$AS3_URL")
+TS_URL='${TS_URL}'
+TS_FN=$(basename "$TS_URL")
+CloudFailover_URL='${CloudFailover_URL}'
+CloudFailover_FN=$(basename "$CloudFailover_URL")
 
 mkdir -p ${libs_dir}
 
+# echo -e "\n"$(date) "Download Declarative Onboarding Pkg"
+# curl -L -o ${libs_dir}/$DO_FN $DO_URL
+
+# echo -e "\n"$(date) "Download CloudFailover Pkg"
+# curl -L -o ${libs_dir}/$CloudFailover_FN $CloudFailover_URL
+# sleep 20
+
+# echo -e "\n"$(date) "Download TS Pkg"
+# curl -L -o ${libs_dir}/$AS3_FN $TS_URL
+
+# sleep 30
+
+# echo -e "\n"$(date) "Download AS3 Pkg"
+# curl -L -o ${libs_dir}/$AS3_FN $AS3_URL
+# sleep 20
+
 echo -e "\n"$(date) "Download Declarative Onboarding Pkg"
 curl -L -o ${libs_dir}/$DO_FN $DO_URL
+sleep 90
 
 echo -e "\n"$(date) "Download AS3 Pkg"
 curl -L -o ${libs_dir}/$AS3_FN $AS3_URL
-sleep 20
+sleep 120
+
+echo -e "\n"$(date) "Download CloudFailover Pkg"
+curl -L -o ${libs_dir}/$CloudFailover_FN $CloudFailover_URL
+sleep 60
+
+echo -e "\n"$(date) "Download TS Pkg"
+curl -L -o ${libs_dir}/$TS_FN $TS_URL
+sleep 60
 
 # Copy the RPM Pkg to the file location
 cp ${libs_dir}/*.rpm /var/config/rest/downloads/
@@ -63,3 +92,12 @@ DATA="{\"operation\":\"INSTALL\",\"packageFilePath\":\"/var/config/rest/download
 echo -e "\n"$(date) "Install AS3 Pkg"
 restcurl -X POST "shared/iapp/package-management-tasks" -d $DATA
 
+# Install CloudFailover Pkg
+DATA="{\"operation\":\"INSTALL\",\"packageFilePath\":\"/var/config/rest/downloads/$CloudFailover_FN\"}"
+echo -e "\n"$(date) "Install CloudFailover Pkg"
+restcurl -X POST "shared/iapp/package-management-tasks" -d $DATA
+
+# Install TS Pkg
+DATA="{\"operation\":\"INSTALL\",\"packageFilePath\":\"/var/config/rest/downloads/$TS_FN\"}"
+echo -e "\n"$(date) "Install TS Pkg"
+restcurl -X POST "shared/iapp/package-management-tasks" -d $DATA

@@ -1,0 +1,38 @@
+---
+
+- name: prepare the TS declaration 
+  template: src="{{ role_path }}/templates/{{ ts_template_file_name }}" dest="{{ role_path }}/files/{{ ts_declaration_file_name }}"
+  delegate_to: localhost
+
+  
+- name: Getting bigip authentication token
+  delegate_to: localhost
+  uri:
+    body: '{"username":"{{ ADMIN_USER }}","password":"{{ ADMIN_PASSWORD }}","loginProvidername":"tmos"}'
+    body_format: json
+    method: POST
+    url: "https://{{ inventory_hostname }}:{{ ADMIN_HTTPS_PORT }}/mgmt/shared/authn/login"
+    status_code: 200
+    validate_certs: no
+  register: bigip_auth_response
+  
+- name: assigning auth token to a variable 
+  set_fact:
+    bigip_auth_token: "{{ bigip_auth_response.json.token.token }}"
+    
+
+- name: deploying TS service
+  delegate_to: localhost
+  uri:
+    body: "{{ lookup('file', ts_declaration_file_name) }}"
+    body_format: json
+    headers:
+      X-F5-Auth-Token: "{{ bigip_auth_token }}"
+    method: POST
+    status_code: 200
+    url: "https://{{ inventory_hostname }}:{{ ADMIN_HTTPS_PORT }}/mgmt/shared/telemetry/declare"
+    validate_certs: no
+
+
+
+

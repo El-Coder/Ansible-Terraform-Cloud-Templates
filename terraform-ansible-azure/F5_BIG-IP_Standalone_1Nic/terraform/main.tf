@@ -24,6 +24,8 @@ module "azure_f5_standalone" {
   f5_product_name   = var.f5_product_name
   DO_URL            = var.DO_URL
   AS3_URL           = var.AS3_URL
+  TS_URL            = var.TS_URL
+  CloudFailover_URL = var.CloudFailover_URL
   f5_ssh_publickey  = file(pathexpand(var.key_path))
 }
 

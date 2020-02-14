@@ -27,6 +27,10 @@ output "private_subnet1_id" {
 output "private_subnet1_cidr" {
   value = var.private_subnet1_cidr
 }
+# output "telemetry_log_id" {
+#   value = azurerm_log_analytics_workspace.azurerm_telemetry.id
+# }
+
 #output "private_subnet2_id" {
 #  value = "${aws_subnet.private-subnet2.id}"
 #}

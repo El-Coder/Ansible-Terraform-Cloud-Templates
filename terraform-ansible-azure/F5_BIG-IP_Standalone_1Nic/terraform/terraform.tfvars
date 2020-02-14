@@ -1,11 +1,11 @@
 #Name of the owner of this deployment (no space)
-owner = "User"
+owner = "owner"
 
 #Name of the project
-project_name = "ExampleCloudTemplates"
+project_name = "AutomateTemplate"
 
 #Azure Region to use
-azure_region = "francecentral"
+azure_region = "eastus"
 
 #Azure AZ to use. Need 2
 azure_az1 = "1"
@@ -15,7 +15,7 @@ azure_az2 = "2"
 key_path = "~/.ssh/id_rsa.pub"
 
 #Public IPs used to access your instances
-AllowedIPs = ["80.12.58.29/32","109.7.65.101/32","92.154.17.15/32", "92.151.103.40/32"]
+AllowedIPs = ["0.0.0.0/32"]
 
 #F5 Image to deploy
 f5_version = "latest"

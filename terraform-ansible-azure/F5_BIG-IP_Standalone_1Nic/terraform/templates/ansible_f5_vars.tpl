@@ -2,5 +2,5 @@
 
 ADMIN_PASSWORD: "{{ VAULT_ADMIN_PASSWORD }}"
 ADMIN_HTTPS_PORT: "8443"
-ADMIN_USER: "admin"
+ADMIN_USER: "azureuser"
 LIST_AS3_POOL_SERVERS: "['${azure_f5_pool_members}']"

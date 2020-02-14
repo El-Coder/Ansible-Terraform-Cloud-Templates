@@ -1,0 +1,7 @@
+---
+
+
+#######TS definition########
+ts_template_name: "tsdeclare"
+ts_template_file_name: "{{ ts_template_name + '.j2'}}"
+ts_declaration_file_name: "{{ ts_template_name + '.json'}}"

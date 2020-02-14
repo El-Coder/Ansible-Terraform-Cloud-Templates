@@ -31,3 +31,10 @@ resource "azurerm_subnet" "azurerm_privatesubnet1" {
     address_prefix       = var.private_subnet1_cidr
 }
 
+resource "azurerm_log_analytics_workspace" "azure_rg" {
+  name                = "telemetry-log"
+  location            = var.azure_region
+  resource_group_name = azurerm_resource_group.azure_rg.name
+  sku                 = "Free"
+}
+

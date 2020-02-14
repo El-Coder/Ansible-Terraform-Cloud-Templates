@@ -21,3 +21,9 @@
   gather_facts: false
   roles:
    - f5_as3_declare
+
+- name: BIG-IP TS 
+  hosts: F5_systems
+  gather_facts: false
+  roles:
+   - f5_ts

@@ -45,6 +45,14 @@ variable "owner" {
   type = "string"
 }
 
+variable "CloudFailover_URL" {
+  type = "string"
+}
+
+variable TS_URL { 
+  type = "string"
+}
+
 variable AS3_URL { 
   type = "string"
 }
